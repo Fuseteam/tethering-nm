@@ -18,6 +18,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+            contents: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,7 +37,7 @@ jobs:
           pkg_directories: bin
 
       - name: setup release
-        uses: spenserblack/actions-tag-to-release@master
+        uses: spenserblack/actions-tag-to-release@main
 
       - name: Make release
         uses: softprops/action-gh-release@v1
