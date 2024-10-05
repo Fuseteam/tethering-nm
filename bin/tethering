@@ -1,0 +1,20 @@
+#!/usr/bin/awk -f
+function quote(str,   d, m, x, y, z) {
+  d = "\47"; m = split(str, x, d)
+  for (y in x) z = z d x[y] d (y < m ? "\\" d : "")
+  return z
+}
+
+BEGIN{
+     c="ip route show to default via 10.42.0.1"
+     c|getline;
+     d="nmcli device show "$3
+     while(d|getline) {
+         FS=":                     "
+         if( /CONNECTION/ ){
+             system(sprintf("nmcli connection down %s", quote($2)));
+             system(sprintf("nmcli connection modify %s ipv4.method shared", quote($2)));
+             system(sprintf("nmcli connection up %s", quote($2)));
+         }
+     }
+ }
