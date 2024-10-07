@@ -12,5 +12,6 @@ BEGIN{
      d|getline;
      system(sprintf("nmcli connection down %s", quote($2)));
      system(sprintf("nmcli connection modify %s ipv4.method shared", quote($2)));
+     system(sprintf("nmcli connection modify %s ipv4.address 10.42.0.81/24", quote($2)));
      system(sprintf("nmcli connection up %s", quote($2)));
 }
