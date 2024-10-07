@@ -30,6 +30,7 @@ This is just an awk script, as such installation relatively simple~
 ```
 nmcli connection down tethering
 nmcli connection modify tethering ipv4.method auto
+```
 - on your computer run the tethering script:
 ```
 tethering
