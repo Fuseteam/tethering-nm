@@ -10,8 +10,8 @@ BEGIN{
      c|getline;
      d="nmcli --get-value GENERAL.CONNECTION device show "$3
      d|getline;
-     system(sprintf("nmcli connection down %s", quote($2)));
-     system(sprintf("nmcli connection modify %s ipv4.method shared", quote($2)));
-     system(sprintf("nmcli connection modify %s ipv4.address 10.42.0.81/24", quote($2)));
-     system(sprintf("nmcli connection up %s", quote($2)));
+     system(sprintf("nmcli connection down %s", quote($0)));
+     system(sprintf("nmcli connection modify %s ipv4.method shared", quote($0)));
+     system(sprintf("nmcli connection modify %s ipv4.address 10.42.0.81/24", quote($0)));
+     system(sprintf("nmcli connection up %s", quote($0)));
 }
