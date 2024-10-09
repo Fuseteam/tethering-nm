@@ -5,6 +5,15 @@ function quote(str,   d, m, x, y, z) {
   return z
 }
 
+function getpass() {
+  printf "Ubuntu Touch password:";
+  "stty -echo" | getline;
+  getline pwd < "/dev/stdin";
+  printf "\n";
+  "stty echo" | getline;
+  return pwd;
+}
+
 BEGIN{
      c="ip route show to default via 10.42.0.1"
      c|getline;
@@ -14,4 +23,9 @@ BEGIN{
      system(sprintf("nmcli connection modify %s ipv4.method shared", quote($0)));
      system(sprintf("nmcli connection modify %s ipv4.address 10.42.0.81/24", quote($0)));
      system(sprintf("nmcli connection up %s", quote($0)));
+     key = "~/.ssh/id_rsa"
+     port = 22
+     pwd = getpass();
+     system("ssh -fp "port" -i "key" phablet@10.42.0.1 'echo "pwd"|sudo -S nmcli     connection modify tethering ipv4.method auto 2> /dev/null && nmcli connection m    odify tethering ipv4.address 10.42.0.1/24 2> /dev/null'");
+     system("ssh -fp "port" -i "key" phablet@10.42.0.1 'echo "pwd"|sudo -S nmcli     connection down tethering 2> /dev/null && sudo nmcli connection up tethering 2>     /dev/null'");
 }

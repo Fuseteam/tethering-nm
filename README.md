@@ -24,16 +24,11 @@ This is just an awk script, as such installation relatively simple~
 
 ## Usage
 
-- connect your Ubuntu Touch device with your computer via USB
+- Set up SSH access to your Ubuntu Touch device
 - turn wifi and mobile data off on your Ubuntu touch device
+- connect your Ubuntu Touch device with your computer via USB
 - set your Ubuntu Touch device in usb tethering mode
 - on your computer run the tethering script:
 ```
 tethering
-```
-- run the following commands on your Ubuntu Touch device to reconfigure your tethering interface:
-```
-nmcli connection down tethering
-nmcli connection modify tethering ipv4.method auto
-nmcli connection up tethering
 ```
