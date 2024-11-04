@@ -1,5 +1,3 @@
-# Set up "Reverse Tethering" on Ubuntu
-
 This is a script that sets up reverse tethering for Ubuntu Touch on an Ubuntu PC. Other Linux distros show also work as long as they use network-manager.
 
 It works by using nmcli command to configure the network interface normally used to tether the PC to a ubuntu touch device to use the "share ipv4 method"
